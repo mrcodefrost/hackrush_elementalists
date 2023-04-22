@@ -4,6 +4,7 @@ import 'package:driverapp/global/global.dart';
 import 'package:driverapp/splashScreen/splash_screen.dart';
 import 'package:driverapp/widgets/progress_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -47,12 +48,24 @@ class _LoginScreenState extends State<LoginScreen> {
     }))
         .user;
     if (firebaseUser != null) {
-      // To store the data on firebase based on UID
-
-      currentFirebaseUser = firebaseUser;
-      Fluttertoast.showToast(msg: "Login Successful");
-      Navigator.push(
-          context, MaterialPageRoute(builder: (c) => const MySplashScreen()));
+      // to check if driver exists
+      DatabaseReference driversRef =
+          FirebaseDatabase.instance.ref().child("drivers");
+      driversRef.child(firebaseUser.uid).once().then((driverKey) {
+        final snap = driverKey.snapshot;
+        if (snap.value != null) {
+          // To store the data on firebase based on UID
+          currentFirebaseUser = firebaseUser;
+          Fluttertoast.showToast(msg: "Login Successful");
+          Navigator.push(context,
+              MaterialPageRoute(builder: (c) => const MySplashScreen()));
+        } else {
+          Fluttertoast.showToast(msg: "No record exist with this email.");
+          fAuth.signOut();
+          Navigator.push(context,
+              MaterialPageRoute(builder: (c) => const MySplashScreen()));
+        }
+      });
     } else {
       Navigator.pop(context);
       Fluttertoast.showToast(msg: "Error Occurred during login");
