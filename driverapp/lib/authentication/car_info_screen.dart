@@ -21,7 +21,8 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
   List<String> carTypesList = [
     "Basic Life Support",
     "Critical Care",
-    "Air Ambulance"
+    "Govt Ambulance",
+    "MVA Ambulance"
   ];
   String? selectedCarType;
 

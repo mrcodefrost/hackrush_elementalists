@@ -6,6 +6,7 @@ import 'package:driverapp/models/direction_details_info.dart';
 import 'package:driverapp/models/directions.dart';
 import 'package:driverapp/models/user_model.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -78,5 +79,44 @@ class AssistantMethods {
         responseDirectionApi["routes"][0]["legs"][0]["duration"]["value"];
 
     return directionDetailsInfo;
+  }
+
+  static pauseLiveLocationUpdates() {
+    streamSubscriptionPosition!.pause();
+    Geofire.removeLocation(currentFirebaseUser!.uid);
+  }
+
+  static resumeLiveLocationUpdates() {
+    streamSubscriptionPosition!.resume();
+    Geofire.setLocation(currentFirebaseUser!.uid,
+        driverCurrentPosition!.latitude, driverCurrentPosition!.longitude);
+  }
+
+  static double calculateFareAmountFromOriginToDestination(
+      DirectionDetailsInfo directionDetailsInfo) {
+    double timeTraveledFareAmountPerMinute =
+        (directionDetailsInfo.duration_value! / 60) * 0.1;
+    double distanceTraveledFareAmountPerKilometer =
+        (directionDetailsInfo.duration_value! / 1000) * 0.1;
+
+    //USD
+    double totalFareAmount = timeTraveledFareAmountPerMinute +
+        distanceTraveledFareAmountPerKilometer;
+
+    if (driverVehicleType == "Basic Life Support") {
+      double resultFareAmount = (totalFareAmount.truncate()) / 2.0;
+      return resultFareAmount;
+    } else if (driverVehicleType == "Govt Ambulance") {
+      double resultFareAmount = (totalFareAmount.truncate()) * 0;
+      return resultFareAmount;
+    } else if (driverVehicleType == "Critical Care") {
+      double resultFareAmount = (totalFareAmount.truncate()) * 2.0;
+      return resultFareAmount;
+    } else if (driverVehicleType == "MVA Ambulance") {
+      double resultFareAmount = (totalFareAmount.truncate()) * 5.0;
+      return resultFareAmount;
+    } else {
+      return totalFareAmount.truncate().toDouble();
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:driverapp/assistants/assistant_methods.dart';
 import 'package:driverapp/global/global.dart';
+import 'package:driverapp/pushNotifications/push_notification_system.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,7 +27,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
     zoom: 14.4746,
   );
 
-  Position? driverCurrentPosition;
   var geoLocator = Geolocator();
   LocationPermission? _locationPermission;
 
@@ -64,11 +64,46 @@ class _HomeTabPageState extends State<HomeTabPage> {
     print("This is the current address " + humanReadableAddress);
   }
 
+  readCurrentDriverInformation() async {
+    currentFirebaseUser = fAuth.currentUser;
+
+    await FirebaseDatabase.instance
+        .ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .once()
+        .then((DatabaseEvent snap) {
+      if (snap.snapshot.value != null) {
+        onlineDriverData.id = (snap.snapshot.value as Map)["id"];
+        onlineDriverData.name = (snap.snapshot.value as Map)["name"];
+        onlineDriverData.phone = (snap.snapshot.value as Map)["phone"];
+        onlineDriverData.email = (snap.snapshot.value as Map)["email"];
+        onlineDriverData.car_color =
+            (snap.snapshot.value as Map)["car_details"]["car_color"];
+        onlineDriverData.car_model =
+            (snap.snapshot.value as Map)["car_details"]["car_model"];
+        onlineDriverData.car_number =
+            (snap.snapshot.value as Map)["car_details"]["car_number"];
+        driverVehicleType = (snap.snapshot.value as Map)["car_details"]["type"];
+
+        print("Car Details :: ");
+        print(onlineDriverData.car_color);
+        print(onlineDriverData.car_model);
+        print(onlineDriverData.car_number);
+      }
+    });
+
+    PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
+    pushNotificationSystem.initializeCloudMessaging(context);
+    pushNotificationSystem.generateAndGetToken();
+  }
+
   @override
   void initState() {
     super.initState();
 
     checkIfLocationPermissionAllowed();
+    readCurrentDriverInformation();
   }
 
   @override
