@@ -605,9 +605,12 @@ class _MainScreenState extends State<MainScreen> {
 
                       ElevatedButton(
                         child: const Text(
-                          "Request a Ride",
+                          "Request an Ambulance",
                         ),
                         onPressed: () {
+                          print('Length of DList');
+                          print(dList.length);
+                          print(dList.length);
                           if (Provider.of<AppInfo>(context, listen: false)
                                   .userDropOffLocation !=
                               null) {

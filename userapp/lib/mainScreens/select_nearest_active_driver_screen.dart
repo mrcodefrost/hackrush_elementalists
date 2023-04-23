@@ -27,8 +27,7 @@ class _SelectNearestActiveDriversScreenState
           "Basic Life Support") {
         fareAmount =
             (AssistantMethods.calculateFareAmountFromOriginToDestination(
-                        tripDirectionDetailsInfo!) /
-                    2)
+                    tripDirectionDetailsInfo!))
                 .toStringAsFixed(1);
       }
       if (dList[index]["car_details"]["type"].toString() == "Critical Care") {
@@ -99,10 +98,14 @@ class _SelectNearestActiveDriversScreenState
               child: ListTile(
                 leading: Padding(
                   padding: const EdgeInsets.only(top: 2.0),
+                  // child: Image.asset(
+                  //   "images/" +
+                  //       dList[index]["car_details"]["type"].toString() +
+                  //       ".png",
+                  //   width: 70,
+                  // ),
                   child: Image.asset(
-                    "images/" +
-                        dList[index]["car_details"]["type"].toString() +
-                        ".png",
+                    "images/Critical Care.png",
                     width: 70,
                   ),
                 ),

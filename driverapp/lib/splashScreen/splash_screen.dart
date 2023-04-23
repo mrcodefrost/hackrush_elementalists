@@ -49,7 +49,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
                 height: 10,
               ),
               const Text(
-                "Lance App",
+                "1 Min Ambulance",
                 style: TextStyle(
                   fontSize: 25,
                   color: kPrimaryColor,
