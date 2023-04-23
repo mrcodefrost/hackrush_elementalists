@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:userapp/infoHandler/app_info.dart';
 import 'package:userapp/splashScreen/splash_screen.dart';
 
 void main() async {
@@ -7,13 +9,16 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MyApp(
-        child: MaterialApp(
-      title: 'Users App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+        child: ChangeNotifierProvider(
+      create: (context) => AppInfo(),
+      child: MaterialApp(
+        title: 'Drivers App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MySplashScreen(),
+        debugShowCheckedModeBanner: false,
       ),
-      home: const MySplashScreen(),
-      debugShowCheckedModeBanner: false,
     )),
   );
 }
