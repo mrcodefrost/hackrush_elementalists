@@ -236,8 +236,6 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
             .child("newRideStatus")
             .set("accepted");
 
-        AssistantMethods.pauseLiveLocationUpdates();
-
         //trip started now - send driver to new tripScreen
         Navigator.push(
             context,
@@ -245,6 +243,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                 builder: (c) => NewTripScreen(
                       userRideRequestDetails: widget.userRideRequestDetails,
                     )));
+        AssistantMethods.pauseLiveLocationUpdates();
       } else {
         Fluttertoast.showToast(msg: "This Ride Request do not exists.");
       }
