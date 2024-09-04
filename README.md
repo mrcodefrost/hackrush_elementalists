@@ -13,17 +13,25 @@ It records the patient details on registration and can transfer it to the first 
 Driver will be able to see location of user in real time. App auto detects the user location, no need to type the address. 
 All of the booking process can be done in under 1 minute !
 
-<img src="[images/example.png](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/1.jpg?raw=true)" width="300" />
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/1.jpg?raw=true" width="200"/>
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/2.jpg?raw=true" width="200"/>
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/3.jpg?raw=true" width="200"/>
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/4.jpg?raw=true" width="200"/>
+</div>
 
-![1.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/1.jpg?raw=true)
-![2.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/2.jpg?raw=true)
-![3.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/3.jpg?raw=true)
-![4.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/4.jpg?raw=true)
-![5.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/5.jpg?raw=true)
-![6.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/6.jpg?raw=true)
-![7.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/7.jpg?raw=true)
-![8.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/8.jpg?raw=true)
-![9.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/9.jpg?raw=true)
-![10.jpg](https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/10.jpg?raw=true)
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/5.jpg?raw=true" width="200"/>
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/6.jpg?raw=true" width="200"/>
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/7.jpg?raw=true" width="200"/>
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/8.jpg?raw=true" width="200"/>
+</div>
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/9.jpg?raw=true" width="200"/>
+  <img src="https://github.com/mrcodefrost/osdhacks_elementalists/blob/main/images/10.jpg?raw=true" width="200"/>
+</div>
+  
+
 
 ## Developed by Team Elementalists :cyclone: :snowflake:
