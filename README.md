@@ -1,5 +1,7 @@
 # One Minute Ambulance
 
+NOTE : To run this project, use your API key in lib/global/map_key.dart , you can get it from Google cloud platform -> APIs -> credentials. (Enable Maps API on console first)
+
 The Ambulance Booking Service in India is still largely based on the calling of '102' helpline, but there are many problems with this process: 
 1) The time to note down details by call operator, to provide driver the details, for the driver to have navigation takes a lot of time that can be critical 
 2)  102 only has the 'Basic Life Support' category of ambulances available which lack many medical equipments and render them ineffective for critical situations such as neo-natal care or multiple victims or ventilators requirement or blood transfusion.
